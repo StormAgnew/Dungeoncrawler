@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Media;
 
-namespace Block1
+    namespace Block1
 {
     internal class Dungeoncrawler
     {
@@ -18,9 +19,14 @@ namespace Block1
             int monsterattack = 0;
             int monsterhealth = 0;
 
+            //SoundPlayer musicPlayer = new SoundPlayer();
+            //musicPlayer.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "./ES_Drone Spooky Sweeper - SFX Producer.wav";//put the .wav in the same directory as the class running this code.
+
+            //musicPlayer.PlayLooping();
+            
             Console.Title = "The Edge of Insanity";
 
-            Console.WriteLine("The Edge of Insanity");
+            
 
             #region Pentagram
             string pentagram = @"
@@ -44,14 +50,17 @@ namespace Block1
                              \ `V-'  `-V' |                                 
                               | \ \ | /  /                                 
                                V \ ~| ~/V                                   
-                                |  \  /|                                    
+                                |  \  /|             The Edge of Insanity                      
                                  \~ | V             'Sometimes, the Realm of Hell is closer than you think.'                     
                                   \  |                                        
                                    VV
         ";
             Console.WriteLine(pentagram);
-
+            Console.WriteLine("Before we begin, what is your name?");
+            string username = Console.ReadLine();
+            
             #endregion
+            Console.Clear();
             do
             {
                 Console.WriteLine("Welcome, mortal. Inside await the horrors of which no mortal dares to see. Are you sure you want to continue?\n\n Enter 'Ready' when you are ready to begin.");
@@ -73,22 +82,23 @@ namespace Block1
                 Console.Clear();
                 Console.WriteLine("Here is where your adventure begins.");
 
-
-                Console.WriteLine("\n\nPlease enter the name you wish to be called." +
-                    "\n\nThis is permenant, and cannot be changed later. Please ensure it is a name you like.");
-                string usersname = Console.ReadLine();
-                Console.WriteLine(usersname + "? " + "Are you sure this is what you want to be called? Y/N");
-                string usernameconfirm = Console.ReadLine();
-                Console.Clear();
-                Console.WriteLine("In this world, you will experience things thought obscure and obscene." + "\n Some people are fortunate to never experience these things." + "\n\nHowever, there are many of us that do. For some, these things are a walk in the park." + "\nFor others, these things can cripple." + "\n\nSometimes, they can even kill." + "\n\n" + usersname + ", the things you experience here may change your outlook on life.");
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                
+                
+                Console.WriteLine("In this world, you will experience things thought obscure and obscene." + "\n Some people are fortunate to never experience these things." + "\n\nHowever, there are many of us that do. For some, these things are a walk in the park." + "\nFor others, these things can cripple." + "\n\nSometimes, they can even kill." + "\n\n" + username + ", the things you experience here may change your outlook on life.");
 
 
                 //TODO 1 create a monster
                 //TODO 2 create a room for said monster
+                Console.WriteLine();
+                Console.WriteLine();
 
+                Console.WriteLine("I can see that smug look on your face. You're probably thinking 'How can this possibly be that bad?" + "\n\nSo there's a monster right there, in front of you. What are you going to do?");
                 do
                 {
-                    Console.WriteLine("I can see that smug look on your face. You're probably thinking 'How can this possibly be that bad?" + "\n\nSo there's a monster right there, in front of you. What are you going to do?");
+                    
 
 
 
