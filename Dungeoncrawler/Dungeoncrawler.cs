@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Media;
+using MonsterLibrary;
+using RoomLibrary;
+
 
     namespace Block1
 {
@@ -15,9 +18,9 @@ using System.Media;
             bool dungeon = true;
             bool mainmenu = true;
             int exp = 0;
-            int playerattack = 0;
-            int monsterattack = 0;
-            int monsterhealth = 0;
+           
+
+            //DONT FORGET TO ENABLE MUSIC ON LIVE. CURRENTLY OFF TO NOT DRIVE ME CRAZY WHILE TESTING
 
             //SoundPlayer musicPlayer = new SoundPlayer();
             //musicPlayer.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "./ES_Drone Spooky Sweeper - SFX Producer.wav";//put the .wav in the same directory as the class running this code.
@@ -26,7 +29,7 @@ using System.Media;
             
             Console.Title = "The Edge of Insanity";
 
-            
+            //TODO Figure out how to asign music to different rooms / different monsters.
 
             #region Pentagram
             string pentagram = @"
@@ -58,26 +61,17 @@ using System.Media;
             Console.WriteLine(pentagram);
             Console.WriteLine("Before we begin, what is your name?");
             string username = Console.ReadLine();
-            
+            //Ask for character info "Race, Class, Name"
             #endregion
             Console.Clear();
             do
             {
-                Console.WriteLine("Welcome, mortal. Inside await the horrors of which no mortal dares to see. Are you sure you want to continue?\n\n Enter 'Ready' when you are ready to begin.");
-
-                string usermainmenuanswer = Console.ReadLine();
+                Console.WriteLine("Welcome, mortal. Inside await the horrors of which no mortal dares to see. Are you sure you want to continue?\n\n");
+                Console.WriteLine("Press 'Enter' when you are ready to begin.");
+                Console.ReadKey(true);
 
                 //TODO Create more options for character creation
-                switch (usermainmenuanswer)
-                {
-                    case "ready":
-
-                        break;
-                    case "Ready":
-
-                        break;
-
-                }
+               //TODO Figure out how to assign specific classes IE Rogue, Paladin.
 
                 Console.Clear();
                 Console.WriteLine("Here is where your adventure begins.");
@@ -87,18 +81,24 @@ using System.Media;
                 Console.WriteLine();
                 
                 
-                Console.WriteLine("In this world, you will experience things thought obscure and obscene." + "\n Some people are fortunate to never experience these things." + "\n\nHowever, there are many of us that do. For some, these things are a walk in the park." + "\nFor others, these things can cripple." + "\n\nSometimes, they can even kill." + "\n\n" + username + ", the things you experience here may change your outlook on life.");
+                Console.WriteLine("In this world, you will experience things thought obscure and obscene." + "\n Some people are fortunate to never experience these things." + "\n\nHowever, there are many of us that do. For some, these things are a walk in the park." + "\nFor others, these things can cripple." + "\n\nSometimes, they can even kill." + "\n\n" + username + ", the things you experience here may change your outlook on life.\n\n");
+                Console.WriteLine("Press 'enter' to continue.");
+                Console.ReadKey(true);
 
+                ///TODO Create RNG Room generator (use tips from Zach to create it)
 
-                //TODO 1 create a monster
-                //TODO 2 create a room for said monster
+                Room r1 = Room.GetRoom();
+                
+              
                 Console.WriteLine();
                 Console.WriteLine();
 
-                Console.WriteLine("I can see that smug look on your face. You're probably thinking 'How can this possibly be that bad?" + "\n\nSo there's a monster right there, in front of you. What are you going to do?");
+                Console.Clear();
+
+               
                 do
                 {
-                    
+                    Console.WriteLine(r1);
 
 
 
@@ -126,9 +126,15 @@ using System.Media;
                             dungeon = false;
                             break;
 
-                        //case "Your Information"
+                        case "3":
+                        case "your info":
+                            Console.WriteLine(m2);
+                            break;
 
-                        //case "Monster Information"
+                        case "4":
+                        case "Monster info":
+                            Console.WriteLine(m1);
+                            break;
 
                         case "Exit":
                         case "5":

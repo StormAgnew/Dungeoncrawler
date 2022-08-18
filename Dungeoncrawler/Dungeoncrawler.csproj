@@ -12,6 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MonsterstatsLibrary\MonsterLibrary.csproj" />
+    <ProjectReference Include="..\PlayerStatsLibrary\PlayerStats.csproj" />
+    <ProjectReference Include="..\RoomLibrary\RoomLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Edited Version.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
