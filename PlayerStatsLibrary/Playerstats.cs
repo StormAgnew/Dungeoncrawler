@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Dungeoncrawler
 {
-    public class PlayerLibrary
+    public class Playerstats
     {
         private string _name;
         private int _attack;
         private int _block;
         private int _health;
-        private int _maxLife;
         private int _magic;
+        
 
 
         public string Name
@@ -36,25 +36,22 @@ namespace Dungeoncrawler
             get { return _health; }
             set { _health = value; }
         }
-        public int MaxLife
-        {
-            get { return _maxLife; }
-            set { _maxLife = value; }
-        }
+
+
         public int Magic
         {
             get { return _magic; }
             set { _magic = value; }
         }
 
-        public PlayerLibrary(string name, int attack, int block, int health, int maxLife, int magic)
+        public Playerstats(string name, int attack, int block, int health, int magic)
         {
             Name = name;
             Attack = attack;
             Block = block;
             Health = health;
-            MaxLife = maxLife;
             Magic = magic;
+
 
         }
         public override string ToString()
@@ -62,11 +59,45 @@ namespace Dungeoncrawler
             //return base.ToString();
             return $"{Name}\n\n" +
                 $"{Attack}\n\n" +
-                $"{MaxLife}\n\n" +
+                $"{Health}\n\n" +
+                $"{Block}\n\n" +
                 $"{Magic}\n\n";
         }
+        public static Playerstats GetStats()
+        {
+            Playerstats p1 = new Playerstats("Paladin", 5, 50, 150, 0);
+            Playerstats p2 = new Playerstats("Rogue", 20, 5, 50, 0);
+            return p1;
 
-        public class WeaponLibrary
+
+
+        }
+        public enum Weapons
+        {
+            Broadsword,
+                GiantAxe,
+                Shield,
+                Knife,
+                Staff
+        }
+        public enum Races
+        {
+            Orc,
+
+        }
+
+
+    }
+
+}
+        
+
+
+
+
+
+
+        /*public class WeaponLibrary
         {
             private string _weaponName;
             private int _weaponDamageMax;
@@ -92,10 +123,10 @@ namespace Dungeoncrawler
             {
                 get { return _bonusHitChance; }
                 set { _bonusHitChance = value; }
+        */
 
+            
 
-            }
+        
+    
 
-        }
-    }
-}
