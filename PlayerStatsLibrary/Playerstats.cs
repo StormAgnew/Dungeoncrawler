@@ -72,14 +72,7 @@ namespace Dungeoncrawler
 
 
         }
-        public enum Weapons
-        {
-            Broadsword,
-                GiantAxe,
-                Shield,
-                Knife,
-                Staff
-        }
+     
         public enum Races
         {
             Orc,
@@ -97,34 +90,7 @@ namespace Dungeoncrawler
 
 
 
-        /*public class WeaponLibrary
-        {
-            private string _weaponName;
-            private int _weaponDamageMax;
-            private int _weaponDamageMin;
-            private int _bonusHitChance;
-
-            public string WeaponName
-            {
-                get { return _weaponName; }
-                set { _weaponName = value; }
-            }
-            public int WeaponDamageMax
-            {
-                get { return _weaponDamageMax; }
-                set { _weaponDamageMax = value; }
-            }
-            public int WeaponDamageMin
-            {
-                get { return _weaponDamageMin; }
-                set { _weaponDamageMin = value; }
-            }
-            public int BonusHitChance
-            {
-                get { return _bonusHitChance; }
-                set { _bonusHitChance = value; }
-        */
-
+        
             
 
         
