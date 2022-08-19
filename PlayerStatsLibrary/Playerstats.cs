@@ -73,11 +73,7 @@ namespace Dungeoncrawler
 
         }
      
-        public enum Races
-        {
-            Orc,
-
-        }
+        
 
 
     }
