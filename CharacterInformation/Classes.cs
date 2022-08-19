@@ -8,11 +8,11 @@ namespace CharacterInformation
 {
     public enum Classes
     {
-        Paladin,
-        Rogue,
-        Mage,
-        Warrior,
-        Hunter
+        Paladin, //Dragonlings CANNOT be paladins.
+        Rogue, // Elves CANNOT be rogues
+        Mage, // Ravenir CANNOT be mages
+        Warrior, //Any
+        Hunter //Any
 
     }
 }
