@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Media;
-using MonsterLibrary;
+using CharacterStats;
 using RoomLibrary;
 
 
@@ -29,6 +29,7 @@ using RoomLibrary;
             
             Console.Title = "The Edge of Insanity";
 
+            Console.WriteLine("***DISCLAIMER, THIS GAME TOUCHES SUBJECTS SUCH AS ABUSE, MENTAL ILLNESS, AND HARDSHIPS OF HUMANS. PLAY AT YOUR OWN RISK.***");
             //TODO Figure out how to asign music to different rooms / different monsters.
 
             #region Pentagram
@@ -86,19 +87,21 @@ using RoomLibrary;
                 Console.ReadKey(true);
 
                 ///TODO Create RNG Room generator (use tips from Zach to create it)
+                Console.Clear();
+                Room room = Room.GetRoom();
 
-                Room r1 = Room.GetRoom();
+                Console.WriteLine(room.Floor);
                 
               
                 Console.WriteLine();
                 Console.WriteLine();
 
-                Console.Clear();
+                
 
                
                 do
                 {
-                    Console.WriteLine(r1);
+                    
 
 
 
@@ -128,13 +131,14 @@ using RoomLibrary;
 
                         case "3":
                         case "your info":
-                            Console.WriteLine(m2);
                             break;
+                            
 
                         case "4":
                         case "Monster info":
-                            Console.WriteLine(m1);
                             break;
+
+                            
 
                         case "Exit":
                         case "5":

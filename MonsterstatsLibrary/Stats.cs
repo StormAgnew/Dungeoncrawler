@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MonsterLibrary
+namespace CharacterStats
+
 {
-    public class Monsterstats
+    public class Stats
+
     {
         private string _name;
         private int _attack;
@@ -32,8 +34,12 @@ namespace MonsterLibrary
         public int Magic 
         { get { return _magic; } 
             set { _magic = value; } }
-                
-        public Monsterstats(string name, int attack, int defense, int health, int magic)
+
+
+        public Stats() { }
+
+
+        public Stats(string name, int attack, int defense, int health, int magic)
         {
             Name = name;
             Attack = attack;
@@ -52,16 +58,7 @@ namespace MonsterLibrary
                 $"Magic: {Magic}\n";
         }
        
-        public static Monsterstats GetMonster()
-        {
-            Monsterstats m1 = new Monsterstats("Dragon Whelp", 10, 10, 50, 50);
-            return m1;
-        }
-        public static Monsterstats GetMonster2()
-        {
-            Monsterstats m2 = new Monsterstats("Thicc Baby Butt", 1, 2, 3, 4);
-            return m2;
-        }
+       
 
             
             
