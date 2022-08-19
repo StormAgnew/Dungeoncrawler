@@ -15,7 +15,7 @@ namespace CharacterStats
         private int _defense;
         private int _health;
         private int _magic;
-
+        private int _speed;
 
         public string Name
         {
@@ -35,17 +35,21 @@ namespace CharacterStats
         { get { return _magic; } 
             set { _magic = value; } }
 
+        public int Speed { get; set; }
+
+
 
         public Stats() { }
 
 
-        public Stats(string name, int attack, int defense, int health, int magic)
+        public Stats(string name, int attack, int defense, int health, int magic, int speed)
         {
             Name = name;
             Attack = attack;
             Defense = defense;
             Health = health;
             Magic = magic;
+            Speed = speed;
         }
 
         public override string ToString()
@@ -55,7 +59,8 @@ namespace CharacterStats
                 $"Attack: {Attack}\n" +
                 $"Defense: {Defense}\n" +
                 $"Life: {Health}\n" +
-                $"Magic: {Magic}\n";
+                $"Magic: {Magic}\n" +
+                $"Speed: {Speed}";
         }
        
        
