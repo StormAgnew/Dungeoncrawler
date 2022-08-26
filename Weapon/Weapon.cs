@@ -9,7 +9,7 @@ namespace WeaponLibrary
 {
 
 
-    public class Weapon : Stats
+    public class Weapon 
     {
         private int _mindamage;
         private int _maxdamage;
@@ -26,21 +26,21 @@ namespace WeaponLibrary
             set { _mindamage = value > 0 && value <= MaxDamage ? value : 1; }
         }
 
-       
-        
+        public Weapons WeaponType { get; set; }
 
-        public Weapon(string name, int attack,
-            Weapons equippedWeapon, int minDamage, int maxDamage) 
+
+
+        public Weapon(
+            Weapons weaponType) 
         {
-            MinDamage = minDamage;
-            MaxDamage = maxDamage;
-            switch (equippedWeapon)
+           WeaponType = weaponType;
+            switch(weaponType)
             {
-                case Weapons.Sword: MinDamage = 50; MaxDamage = 100;
+                case Weapons.Sword: MinDamage = 5; MaxDamage = 10;
                     break;
-                case Weapons.Polearm: MinDamage = 25; MaxDamage = 150;
+                case Weapons.Polearm: MinDamage = 2; MaxDamage = 15;
                     break;
-                case Weapons.GreatAxe: MinDamage = 75; MaxDamage = 200;
+                case Weapons.GreatAxe: MinDamage = 7; MaxDamage = 20;
                     break;
                 case Weapons.Dagger: MinDamage = 30; MaxDamage = 115;
                     break;
@@ -52,7 +52,7 @@ namespace WeaponLibrary
       public override string ToString()
         {
             return string.Format("{0}\t{1} to {2} Damage\n",
-                Name,
+                WeaponType,
                 MinDamage,
                 MaxDamage);
                 
