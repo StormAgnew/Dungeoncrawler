@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MonsterstatsLibrary\CharacterStats.csproj" />
+    <ProjectReference Include="..\Weapon\WeaponLibrary.csproj" />
+  </ItemGroup>
+
 </Project>
