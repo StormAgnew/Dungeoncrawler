@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 using System.Media;
 using CharacterStats;
 using RoomLibrary;
+using CharacterInformation;
+using Dungeoncrawler;
+using WeaponLibrary;
+using PlayerToon;
+    
 
-
-    namespace Block1
+namespace Block1
 {
     internal class Dungeoncrawler
     {
+        public static Races PlayerRace { get; private set; }
+
         static void Main(string[] args)
         {
             bool alive = true;
@@ -29,7 +35,7 @@ using RoomLibrary;
             
             Console.Title = "The Edge of Insanity";
 
-            Console.WriteLine("***DISCLAIMER, THIS GAME TOUCHES SUBJECTS SUCH AS ABUSE, MENTAL ILLNESS, AND HARDSHIPS OF HUMANS. PLAY AT YOUR OWN RISK.***");
+            
             //TODO Figure out how to asign music to different rooms / different monsters.
 
             #region Pentagram
@@ -60,9 +66,12 @@ using RoomLibrary;
                                    VV
         ";
             Console.WriteLine(pentagram);
+            Console.WriteLine("***DISCLAIMER, THIS GAME TOUCHES SUBJECTS SUCH AS ABUSE, MENTAL ILLNESS, AND HARDSHIPS OF HUMANS. PLAY AT YOUR OWN RISK.***");
             Console.WriteLine("Before we begin, what is your name?");
             string username = Console.ReadLine();
-            //Ask for character info "Race, Class, Name"
+            
+
+
             #endregion
             Console.Clear();
             do
@@ -71,10 +80,65 @@ using RoomLibrary;
                 Console.WriteLine("Press 'Enter' when you are ready to begin.");
                 Console.ReadKey(true);
 
-                //TODO Create more options for character creation
-               //TODO Figure out how to assign specific classes IE Rogue, Paladin.
+                Console.Clear();
+
+                Console.WriteLine("Please select a race from the list below.\n\n");
+
+                var races = Enum.GetValues(typeof(Races));
+                int index = 0;
+                foreach (var race in races)
+                {
+                    Console.WriteLine(index + ") " + race);
+                    index++;
+                }
+                
+                    int userInput = int.Parse(Console.ReadLine());
+                Races userrace = (Races)userInput;
+
+                
 
                 Console.Clear();
+
+                Console.WriteLine("Please pick a weapon!");
+
+
+                var weapons = Enum.GetValues(typeof(Weapons));
+                int index2 = 0;
+                foreach (var weapon in weapons)
+                {
+                    Console.WriteLine(index2 + ") " + weapon);
+                    index2++;
+                }
+                int userInput2 = int.Parse(Console.ReadLine());
+                Weapons userweap =(Weapons)userInput2;
+
+                Console.Clear();
+
+                Console.WriteLine("So, your name is " + username + " , you are carrying a " + userweap + ", and you are a " + userrace + ". Is this information correct? Please type 'Yes' or 'No' ");
+                string useranswer = Console.ReadLine();
+                switch (useranswer)
+                {
+                    case "Yes":
+                        break;
+                    case "No":
+                        alive = false;
+                        break;
+                }
+                    
+                
+
+                
+
+                Player playercharacter = new Player(username, userrace, userweap);
+
+
+                //TODO Create more options for character creation
+                //TODO Figure out how to assign specific classes IE Rogue, Paladin.
+
+               
+
+                Console.Clear();
+
                 Console.WriteLine("Here is where your adventure begins.");
 
                 Console.WriteLine();
@@ -85,12 +149,13 @@ using RoomLibrary;
                 Console.WriteLine("In this world, you will experience things thought obscure and obscene." + "\n Some people are fortunate to never experience these things." + "\n\nHowever, there are many of us that do. For some, these things are a walk in the park." + "\nFor others, these things can cripple." + "\n\nSometimes, they can even kill." + "\n\n" + username + ", the things you experience here may change your outlook on life.\n\n");
                 Console.WriteLine("Press 'enter' to continue.");
                 Console.ReadKey(true);
-
+                
                 ///TODO Create RNG Room generator (use tips from Zach to create it)
                 Console.Clear();
                 Room room = Room.GetRoom();
+                Monsters monster = Monsters.SpawnMonsters();
 
-                Console.WriteLine(room.Floor);
+                
                 
               
                 Console.WriteLine();
@@ -101,7 +166,8 @@ using RoomLibrary;
                
                 do
                 {
-                    
+                    Console.WriteLine($"{room.Floor}");
+                Console.WriteLine($"{monster.Badguy}");
 
 
 
@@ -111,40 +177,56 @@ using RoomLibrary;
                         "\n\n4) Monster's information" +
                         "\n\n5) Exit the Program");
                     string command = Console.ReadLine();
+                    Console.Clear();
 
                     switch (command)
                     {
                         case "attack":
                         case "1":
                             Console.Clear();
-                            Console.WriteLine("*You violently start flailing your arms, as you have no weapon yet. The monster looks at you inquisitively and slugs a giant scaley arm towards you. You fly off in a completely different direction.");
-                            Console.WriteLine("*You slam into a wall, your body completely disentegrates into nothingness. Pretty sure you're dead.");
-                            dungeon = false;
+                            Console.WriteLine("Attacking!");
+                            Combat.DoAttack(playercharacter, monster);
+                            if(monster.MaxLife<= 0)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine($"\n You killed {monster.Name}!");
+                                Console.Beep(700, 500);
+                                Console.ResetColor();
+                                dungeon = false;
+
+                            }
+                            
                             break;
 
                         case "Run":
                         case "2":
                             Console.Clear();
-                            Console.WriteLine("*You decide to swiftly sprint in the opposite direction. Probably one of the better desisions you've ever had.");
+                            Console.WriteLine($"You decide to swiftly sprint in the opposite direction.\n However, as you turn, {monster.Name} attacks you as you flee! ");
+                            Combat.DoAttack(monster, playercharacter);
                             dungeon = false;
                             break;
 
                         case "3":
                         case "your info":
+                            Console.WriteLine("Here's your info!");
+                            Console.WriteLine(playercharacter);
                             break;
                             
 
                         case "4":
                         case "Monster info":
+                            Console.WriteLine("Here's the monsters info!");
+                            Console.WriteLine(monster);
                             break;
 
                             
 
                         case "Exit":
                         case "5":
-                            dungeon = false;
-                            alive = false;
+                            Console.WriteLine("See ya later!");
+                            dungeon=false;
                             break;
+
 
 
 

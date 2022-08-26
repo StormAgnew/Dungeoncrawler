@@ -1,4 +1,4 @@
-﻿namespace Weapon
+﻿namespace WeaponLibrary
 {
     public enum Weapons
     {

@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CharacterInformation\CharacterInformation.csproj" />
     <ProjectReference Include="..\MonsterstatsLibrary\CharacterStats.csproj" />
     <ProjectReference Include="..\RoomLibrary\RoomLibrary.csproj" />
   </ItemGroup>

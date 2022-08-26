@@ -15,7 +15,7 @@ namespace CharacterStats
         private int _defense;
         private int _health;
         private int _magic;
-        private int _speed;
+        private int _maxlife;
 
         public string Name
         {
@@ -30,45 +30,55 @@ namespace CharacterStats
             set { _defense = value; } }
         public int Health
         { get { return _health; } 
-            set { _health = value; } }
-        public int Magic 
-        { get { return _magic; } 
-            set { _magic = value; } }
+            set {
+                _health = value <= MaxLife ? value : MaxLife;
+            } }
+        
+        public int MaxLife{ get; set; }
 
-        public int Speed { get; set; }
+
+       
 
 
 
         public Stats() { }
 
 
-        public Stats(string name, int attack, int defense, int health, int magic, int speed)
+        public Stats(string name, int attack, int defense, int maxLife,  int health)
         {
             Name = name;
             Attack = attack;
             Defense = defense;
+            MaxLife = maxLife;
             Health = health;
-            Magic = magic;
-            Speed = speed;
+           
         }
+           
+            
+            
 
         public override string ToString()
         {
-            //return base.ToString();
-            return $"Name: {Name}\n" +
-                $"Attack: {Attack}\n" +
-                $"Defense: {Defense}\n" +
-                $"Life: {Health}\n" +
-                $"Magic: {Magic}\n" +
-                $"Speed: {Speed}";
+            return string.Format("-=-=- {0} -=-=-\n" +
+                "Health: {1} of {2}\nDefense: {3}\nAttack: {4}\n",
+                Name, MaxLife, Health, Defense, Attack);
         }
-       
-       
+        public virtual int Block()
+        {
+            return Defense;
+        }
+
+        public virtual int CalcDamage()
+        {
+            return 0;
+        }
+    }  
+ }      
 
             
             
             
         
         
-    }
-}
+    
+
