@@ -10,7 +10,7 @@ using CharacterInformation;
 using Dungeoncrawler;
 using WeaponLibrary;
 using PlayerToon;
-    
+
 
 namespace Block1
 {
@@ -24,7 +24,7 @@ namespace Block1
             bool dungeon = true;
             bool mainmenu = true;
             int exp = 0;
-           
+
 
             //DONT FORGET TO ENABLE MUSIC ON LIVE. CURRENTLY OFF TO NOT DRIVE ME CRAZY WHILE TESTING
 
@@ -32,10 +32,10 @@ namespace Block1
             //musicPlayer.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "./ES_Drone Spooky Sweeper - SFX Producer.wav";//put the .wav in the same directory as the class running this code.
 
             //musicPlayer.PlayLooping();
-            
+
             Console.Title = "The Edge of Insanity";
 
-            
+
             //TODO Figure out how to asign music to different rooms / different monsters.
 
             #region Pentagram
@@ -69,106 +69,116 @@ namespace Block1
             Console.WriteLine("***DISCLAIMER, THIS GAME TOUCHES SUBJECTS SUCH AS ABUSE, MENTAL ILLNESS, AND HARDSHIPS OF HUMANS. PLAY AT YOUR OWN RISK.***");
             Console.WriteLine("Before we begin, what is your name?");
             string username = Console.ReadLine();
-            
+
 
 
             #endregion
             Console.Clear();
+
+            Console.WriteLine("Welcome, mortal. Inside await the horrors of which no mortal dares to see. Are you sure you want to continue?\n\n");
+            Console.WriteLine("Press 'Enter' when you are ready to begin.");
+            Console.ReadKey(true);
+
+            Console.Clear();
+
+            Console.WriteLine("Please select a race from the list below.\n\n");
+
+            var races = Enum.GetValues(typeof(Races));
+            int index = 0;
+            foreach (var race in races)
+            {
+                Console.WriteLine(index + ") " + race);
+                index++;
+            }
+
+
+            int userInput = int.Parse(Console.ReadLine());
+            Races userrace = (Races)userInput;
+
+
+
+            Console.Clear();
+
+            Console.WriteLine("Please pick a weapon!");
+
+
+            var weapons = Enum.GetValues(typeof(Weapons));
+            int index2 = 0;
+            foreach (var weapon in weapons)
+            {
+                Console.WriteLine(index2 + ") " + weapon);
+                index2++;
+            }
+            int userInput2 = int.Parse(Console.ReadLine());
+            Weapons userweap = (Weapons)userInput2;
+
+            Weapon weapon1 = new Weapon(userweap);
+
+            Console.Clear();
+
+            Console.WriteLine("So, your name is " + username + " , you are carrying a " + userweap + ", and you are a " + userrace + ". Is this information correct? Please type 'Yes' or 'No' ");
+            string useranswer = Console.ReadLine();
+            switch (useranswer)
+            {
+                case "Yes":
+                    break;
+                case "No":
+                    alive = false;
+                    break;
+            }
+
+
+
+
+
+            Player playercharacter = new Player(username, userrace, weapon1);
+
+
+            //TODO Create more options for character creation
+            //TODO Figure out how to assign specific classes IE Rogue, Paladin.
+            //Create a loot system of coins after defeating a monster.k
+
+
+
+
+            Console.Clear();
+
+            Console.WriteLine("Here is where your adventure begins.");
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+
+            Console.WriteLine("In this world, you will experience things thought obscure and obscene." + "\n Some people are fortunate to never experience these things." + "\n\nHowever, there are many of us that do. For some, these things are a walk in the park." + "\nFor others, these things can cripple." + "\n\nSometimes, they can even kill." + "\n\n" + username + ", the things you experience here may change your outlook on life.\n\n");
+            Console.WriteLine("Press 'enter' to continue.");
+            Console.ReadKey(true);
+
+
+            Console.Clear();
+
+
+
+
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+
+
+
             do
             {
-                Console.WriteLine("Welcome, mortal. Inside await the horrors of which no mortal dares to see. Are you sure you want to continue?\n\n");
-                Console.WriteLine("Press 'Enter' when you are ready to begin.");
-                Console.ReadKey(true);
-
-                Console.Clear();
-
-                Console.WriteLine("Please select a race from the list below.\n\n");
-
-                var races = Enum.GetValues(typeof(Races));
-                int index = 0;
-                foreach (var race in races)
-                {
-                    Console.WriteLine(index + ") " + race);
-                    index++;
-                }
-                
-                    int userInput = int.Parse(Console.ReadLine());
-                Races userrace = (Races)userInput;
-
-                
-
-                Console.Clear();
-
-                Console.WriteLine("Please pick a weapon!");
-
-
-                var weapons = Enum.GetValues(typeof(Weapons));
-                int index2 = 0;
-                foreach (var weapon in weapons)
-                {
-                    Console.WriteLine(index2 + ") " + weapon);
-                    index2++;
-                }
-                int userInput2 = int.Parse(Console.ReadLine());
-                Weapons userweap =(Weapons)userInput2;
-
-                Console.Clear();
-
-                Console.WriteLine("So, your name is " + username + " , you are carrying a " + userweap + ", and you are a " + userrace + ". Is this information correct? Please type 'Yes' or 'No' ");
-                string useranswer = Console.ReadLine();
-                switch (useranswer)
-                {
-                    case "Yes":
-                        break;
-                    case "No":
-                        alive = false;
-                        break;
-                }
-                    
-                
-
-                
-
-                Player playercharacter = new Player(username, userrace, userweap);
-
-
-                //TODO Create more options for character creation
-                //TODO Figure out how to assign specific classes IE Rogue, Paladin.
-
-               
-
-                Console.Clear();
-
-                Console.WriteLine("Here is where your adventure begins.");
-
-                Console.WriteLine();
-                Console.WriteLine();
-                Console.WriteLine();
-                
-                
-                Console.WriteLine("In this world, you will experience things thought obscure and obscene." + "\n Some people are fortunate to never experience these things." + "\n\nHowever, there are many of us that do. For some, these things are a walk in the park." + "\nFor others, these things can cripple." + "\n\nSometimes, they can even kill." + "\n\n" + username + ", the things you experience here may change your outlook on life.\n\n");
-                Console.WriteLine("Press 'enter' to continue.");
-                Console.ReadKey(true);
-                
-                ///TODO Create RNG Room generator (use tips from Zach to create it)
-                Console.Clear();
                 Room room = Room.GetRoom();
                 Monsters monster = Monsters.SpawnMonsters();
 
-                
-                
-              
-                Console.WriteLine();
-                Console.WriteLine();
+                Console.WriteLine($"{room.Floor}");
 
-                
 
-               
+
+                bool innerloop = true;
                 do
                 {
-                    Console.WriteLine($"{room.Floor}");
-                Console.WriteLine($"{monster.Badguy}");
-
 
 
                     Console.WriteLine("\n\n1) Attack" +
@@ -185,17 +195,18 @@ namespace Block1
                         case "1":
                             Console.Clear();
                             Console.WriteLine("Attacking!");
-                            Combat.DoAttack(playercharacter, monster);
-                            if(monster.MaxLife<= 0)
+                            Combat.DoBattle(playercharacter, monster);
+                            if (monster.Health <= 0)
                             {
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine($"\n You killed {monster.Name}!");
                                 Console.Beep(700, 500);
                                 Console.ResetColor();
-                                dungeon = false;
-
+                                innerloop = false;
                             }
-                            
+
+
+
                             break;
 
                         case "Run":
@@ -203,7 +214,9 @@ namespace Block1
                             Console.Clear();
                             Console.WriteLine($"You decide to swiftly sprint in the opposite direction.\n However, as you turn, {monster.Name} attacks you as you flee! ");
                             Combat.DoAttack(monster, playercharacter);
-                            dungeon = false;
+                            Console.WriteLine("Press 'enter' to continue..");
+                            Console.ReadKey();
+                            innerloop = false;
                             break;
 
                         case "3":
@@ -211,7 +224,7 @@ namespace Block1
                             Console.WriteLine("Here's your info!");
                             Console.WriteLine(playercharacter);
                             break;
-                            
+
 
                         case "4":
                         case "Monster info":
@@ -219,30 +232,30 @@ namespace Block1
                             Console.WriteLine(monster);
                             break;
 
-                            
+
 
                         case "Exit":
                         case "5":
                             Console.WriteLine("See ya later!");
-                            dungeon=false;
+                            dungeon = false;
                             break;
 
 
 
 
                     }
+                } while (innerloop && dungeon);
+
+
+            } while (dungeon == true);
 
 
 
-                } while (dungeon);
 
 
 
 
 
-
-
-            } while (alive);
 
 
 
